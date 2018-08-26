@@ -1,0 +1,149 @@
+<html>
+
+    <head>
+    
+        <title>Javascript Game</title>
+        <style type="text/css">
+     
+            
+            body {
+                
+                font-family: cursive;
+                background-color: #EDF2ED;
+            
+            }
+        
+            #figure {
+                
+                width: 200px;
+                height: 200px;
+                background-color: red;
+                display: none;
+                position: relative; 
+            
+            }
+            
+            .bold {
+                
+                font-weight: bold;
+                font-size: 15px;
+                
+            }
+            
+            h1 {
+            
+            color: #6985B4;
+            
+            }
+            
+            #mainParagraph {
+                
+                color: #474441;
+                
+            }
+            
+            	
+        
+        </style>
+           
+    </head>
+
+    <body>
+        
+    
+        <h1>Test your reactions</h1>
+        <p id="mainParagraph">Click on the squares and circles as quick as you can</p>
+        <p class="bold">Your time is:<span id="timeTaken"></span></p>
+        <div id="figure"></div>
+        
+
+    
+    </body>
+    
+        <script type=text/javascript>
+            
+            var start = new Date().getTime();
+            
+            function getRandomColor() {
+                
+                var letters = '0123456789ABCDEF';
+                
+                var color = '#';
+                
+                for (var i = 0; i < 6; i++) {
+                    
+                    color += letters[Math.floor(Math.random() * 16)];
+                }
+                
+                return color;
+            }
+            
+            function makeshapeappear () {
+                
+                var top = Math.random() * 400;
+                
+                var left = Math.random() * 800;
+                
+                var width = (Math.random() * 170) + 100;
+                
+                if (Math.random() > 0.5) {
+                    
+                   document.getElementById("figure").style.borderRadius = "50%";
+                    
+                }   else {
+                        
+                    document.getElementById("figure").style.borderRadius = "0%";
+                        
+                        
+                }
+                
+                document.getElementById("figure").style.backgroundColor = getRandomColor();
+                
+                document.getElementById("figure").style.width = width + "px";
+                
+                document.getElementById("figure").style.height = width + "px";
+                
+                document.getElementById("figure").style.top = top + "px";
+                
+                document.getElementById("figure").style.left = left + "px";
+                
+                document.getElementById("figure").style.display = "block";
+                
+                start = new Date().getTime();
+            }
+            
+            function appearAfterDelay () {
+                
+                setTimeout(makeshapeappear, Math.random() * 1500);
+                
+            }
+            
+            appearAfterDelay();
+        
+            
+            var start = new Date().getTime();
+        
+            document.getElementById("figure").onclick = function () {
+                
+                document.getElementById("figure").style.display = "none";
+                
+                var end = new Date().getTime();
+                
+                var timeTaken = (end - start) / 1000;
+                
+                document.getElementById("timeTaken").innerHTML = timeTaken + "s";
+                
+                appearAfterDelay();
+                
+                
+                
+                
+            }
+            
+            
+        </script>
+        
+
+
+
+</html>
